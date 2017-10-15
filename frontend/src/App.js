@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './App.css';
 import CategoryList from './CategoryList'
 import PostList from './PostList'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
   render() {

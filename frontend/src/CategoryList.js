@@ -9,7 +9,6 @@ export default function CategoryList ({categories}) {
         <CategoryItem categoryName={cat.name} />
       </li>
     )
-
   })
 
   return (

@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 export default function CategoryItem ({categoryName}) {
   return (
     <div className="category-item">
-      <h2>{categoryName}</h2>
+      <Link to={`/category/${categoryName}`}>
+        {categoryName}
+      </Link>
     </div>
   )
 }

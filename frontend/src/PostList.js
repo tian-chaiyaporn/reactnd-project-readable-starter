@@ -3,11 +3,12 @@ import PostItem from './PostItem'
 
 export default function PostList ({posts}) {
   const postItems = posts.map(post => {
+    const date = new Date(post.timestamp)
     return (
       <li key={post.id}>
         <PostItem
           postTitle={post.title}
-          postDate={Date(post.timestamp)}
+          postDate={date.toString()}
         />
       </li>
     )
