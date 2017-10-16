@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-export default function PostItem ({postTitle, postDate}) {
+export default function PostItem ({id, postTitle, postDate}) {
   const date = postDate.substring(0, postDate.indexOf('GMT'))
   return (
-    <div className="category-item">
-      <Link to={`/post/${postTitle.replace(/ /g, "-")}`}>
+    <div className="post-item">
+      <Link to={`/post/${id}/${postTitle.replace(/ /g, "-")}`}>
         <h3>
           {postTitle}
         </h3>

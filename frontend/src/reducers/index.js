@@ -1,16 +1,21 @@
 import {
+  GET_START_DATA,
   ADD_COMMENT
 } from '../actions'
 
 const initialState = {
   categories: [
     {
-      name: 'test',
-      path: 'test'
+      name: 'react',
+      path: 'react'
     },
     {
-      name: 'test2',
-      path: 'test2'
+      name: 'redux',
+      path: 'redux'
+    },
+    {
+      name: 'udacity',
+      path: 'udacity'
     }
   ],
   posts: [
@@ -37,12 +42,12 @@ const initialState = {
   ],
   comments: [
     {
-      id: '8tu4bsun805n8un48ve89',
+      id: '894tuq4ut84ut8v4t8wun89g',
       parentId: "8xf0y6ziyjabvozdd253nd",
-      timestamp: 1469479767190,
-      body: 'Comments. Are. Cool.',
-      author: 'thingone',
-      voteScore: -5,
+      timestamp: 1468166872634,
+      body: 'Hi there! I am a COMMENT.',
+      author: 'thingtwo',
+      voteScore: 6,
       deleted: false,
       parentDeleted: false
     },
@@ -61,6 +66,10 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case GET_START_DATA:
+      return {
+        ...state
+      }
     case ADD_COMMENT :
       return {
         ...state

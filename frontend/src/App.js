@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import './App.css';
-import CategoryList from './CategoryList'
-import PostList from './PostList'
-import { Route } from 'react-router-dom'
+import Home from './Home'
+import Category from './Category'
+import Post from './Post'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <CategoryList categories={this.props.categories} />
-        <PostList posts={this.props.posts} />
-      </div>
+      <BrowserRouter>
+        <div className="route-container">
+          <Route exact path="/" component={Home} />
+          <Route exact path="/category/:name" component={Category} />
+          <Route path="/post/:id" component={Post} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
 
-function mapStateToProps ({categories, posts}) {
-  return {
-    categories: categories,
-    posts: posts
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

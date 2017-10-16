@@ -7,6 +7,7 @@ export default function PostList ({posts}) {
     return (
       <li key={post.id}>
         <PostItem
+          id={post.id}
           postTitle={post.title}
           postDate={date.toString()}
         />

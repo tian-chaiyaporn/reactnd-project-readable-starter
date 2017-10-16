@@ -26,38 +26,26 @@ Post Comp (props -> title, body, date)
     |--- Comment comp 2
     |--- ...
 
-state = {
-  categories: [
-    {
-      name: 'react',
-      path: 'react'
-    },
-    ...
-  ],
-  posts: [
-    {
-      id: '8xf0y6ziyjabvozdd253nd',
-      timestamp: 1467166872634,
-      title: 'Udacity is the best place to learn React',
-      body: 'Everyone says so after all.',
-      author: 'thingtwo',
-      category: 'react',
-      voteScore: 6,
-      deleted: false
-    },
-    ...
-  ],
-  comments: [
-    {
-      id: '8tu4bsun805n8un48ve89',
-      parentId: "8xf0y6ziyjabvozdd253nd",
-      timestamp: 1469479767190,
-      body: 'Comments. Are. Cool.',
-      author: 'thingone',
-      voteScore: -5,
-      deleted: false,
-      parentDeleted: false
-    },
-    ...
-  ]
-}
+ToDo:
+- hook up to backend api to get all existing state
+
+- create form with internal form state for posting new posts
+- hook up to backend api to add new post
+- create vote button and display on each post
+- hook up to backend api to vote on post
+- create delete button for post
+- hook up to backend api to disable post
+- create button to edit post with its own edit component
+- hook up to backend api to edit post
+
+- create form with internal form state for posting comments
+- hook up to backend api to add new comment
+- create vote button and display on each comments
+- hook up to backend api to vote on comments
+- create delete button for comments
+- hook up to backend api to disable comments
+- create button to edit comment with its own edit component
+- hook up to backend api to edit comments
+
+- identify each component that needs states to update
+- hook up action dispatch to get data to store with each navigation for latest updates
