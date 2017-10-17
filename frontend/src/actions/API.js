@@ -32,3 +32,18 @@ export function fetchComments (id) {
   const url = `${BASE}/posts/${id}/comments`
   return fetch(url, { headers })
 }
+
+export function newPost(post) {
+  const url = `${BASE}/posts`
+  const request = new Request(url, {
+    method: 'POST',
+    headers: new Headers({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': TOKEN
+    }),
+    mode: 'cors',
+    body: JSON.stringify(post)
+  })
+  return fetch(request)
+}

@@ -1,7 +1,8 @@
 import {
   GET_POSTS_DATA,
   GET_CATEGORY_POSTS_DATA,
-  GET_SINGLE_POST
+  GET_SINGLE_POST,
+  CREATE_NEW_POST
 } from '../actions'
 
 const initialState = {
@@ -29,6 +30,12 @@ function postReducer(state = initialState, action) {
       return {
         ...state,
         currentPost: post
+      }
+    case CREATE_NEW_POST:
+      const { newPost } = action
+      return {
+        ...state,
+        currentCategoryPosts: state.currentCategoryPosts.concat(newPost)
       }
     default :
       return state

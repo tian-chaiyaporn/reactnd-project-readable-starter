@@ -1,6 +1,6 @@
 import * as API from './API'
 
-// POSTS
+// GET
 export const GET_SINGLE_POST = 'GET_SINGLE_POST';
 export function getSinglePost (post) {
   return {
@@ -41,4 +41,20 @@ export const fetchPosts = (category = '') => dispatch => (
         dispatch(getCategoryPostsData(data))
       }
     })
+);
+
+// POST
+export const CREATE_NEW_POST = 'CREATE_NEW_POST';
+export function createPost (newPost) {
+  return {
+    type: CREATE_NEW_POST,
+    newPost
+  }
+}
+
+export const createNewPost = (post) => dispatch => (
+  API.newPost(post)
+    .then(data => data.json())
+    .then(data => {
+      dispatch(createPost(data))})
 );
