@@ -52,6 +52,17 @@ export function newPost(post) {
   return fetch(request)
 }
 
+export function updatePostScore(id, score) {
+  const url = `${BASE}/posts/${id}`
+  const request = new Request(url, {
+    method: 'POST',
+    headers: new Headers(POST_HEADER),
+    mode: 'cors',
+    body: JSON.stringify({option: score})
+  })
+  return fetch(request)
+}
+
 export function newComment(comment) {
   const url = `${BASE}/comments`
   const request = new Request(url, {

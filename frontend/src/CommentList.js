@@ -8,7 +8,9 @@ export default function CommentList ({comments}) {
       <li key={comment.id}>
         <Comment
           id={comment.id}
-          commentBody={comment.body}
+          body={comment.body}
+          author={comment.author}
+          score={comment.voteScore}
           commentDate={date.toString()}
         />
       </li>

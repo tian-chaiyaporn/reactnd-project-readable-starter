@@ -55,6 +55,24 @@ export function createPost (newPost) {
 export const createNewPost = (post) => dispatch => (
   API.newPost(post)
     .then(data => data.json())
-    .then(data => {
-      dispatch(createPost(data))})
+    .then(data => dispatch(createPost(data)))
+);
+
+// POST /posts/:id
+export const UPDATE_POST_SCORE = 'UPDATE_POST_SCORE';
+export function updatePostScore (postWithNewScore) {
+  return {
+    type: UPDATE_POST_SCORE,
+    postWithNewScore
+  }
+}
+
+export const test = () => dispatch => (
+  console.log('dispatching')
+);
+
+export const updateNewPostScore = (id, score) => dispatch => (
+  API.updatePostScore(id, score)
+    .then(data => data.json())
+    .then(data => dispatch(updatePostScore(data)))
 );

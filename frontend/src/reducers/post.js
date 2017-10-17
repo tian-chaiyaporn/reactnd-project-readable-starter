@@ -2,7 +2,8 @@ import {
   GET_POSTS_DATA,
   GET_CATEGORY_POSTS_DATA,
   GET_SINGLE_POST,
-  CREATE_NEW_POST
+  CREATE_NEW_POST,
+  UPDATE_POST_SCORE
 } from '../actions'
 
 const initialState = {
@@ -36,6 +37,19 @@ function postReducer(state = initialState, action) {
       return {
         ...state,
         currentCategoryPosts: state.currentCategoryPosts.concat(newPost)
+      }
+    case UPDATE_POST_SCORE:
+      const { postWithNewScore } = action
+      const updatedPosts = state.posts.map(p => {
+        if (p.id === postWithNewScore.id) {
+          p = postWithNewScore
+        }
+        return p
+      })
+      return {
+        ...state,
+        posts: updatedPosts,
+        currentPost: postWithNewScore
       }
     default :
       return state

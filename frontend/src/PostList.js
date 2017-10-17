@@ -9,7 +9,9 @@ export default function PostList ({posts}) {
         <PostItem
           id={post.id}
           postTitle={post.title}
+          postAuthor={post.author}
           postDate={date.toString()}
+          currentScore={post.voteScore}
         />
       </li>
     )
