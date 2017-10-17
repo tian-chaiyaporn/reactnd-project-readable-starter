@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import CommentList from './CommentList'
+import { fetchSinglePost, fetchCommentsByPostId } from './actions'
 
 class Post extends Component {
-  render() {
-    const post = this.props.posts.filter(p => p.id === this.props.match.params.id)[0];
-    const comments = this.props.comments.filter(c => c.parentId === this.props.match.params.id);
+  componentDidMount() {
+    this.props.dispatch(fetchSinglePost(this.props.match.params.id));
+    this.props.dispatch(fetchCommentsByPostId(this.props.match.params.id));
+  }
 
+  render() {
     return (
       <div className="post">
         <div className="post-details">
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
+          <h3>{this.props.currentPost.title}</h3>
+          <p>{this.props.currentPost.body}</p>
+          <p>{this.props.currentPost.author}</p>
         </div>
-        <CommentList comments={comments}/>
+        <CommentList comments={this.props.comments}/>
       </div>
     );
   }
 }
 
-function mapStateToProps ({posts, comments}) {
+function mapStateToProps ({currentPost, comments}) {
   return {
-    posts: posts,
+    currentPost: currentPost,
     comments: comments
   }
 }
