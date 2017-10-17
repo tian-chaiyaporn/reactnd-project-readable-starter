@@ -3,6 +3,7 @@ const TOKEN = localStorage.token ?
   localStorage.token :
   Math.random().toString(36).substr(-8)
 
+// GET
 const GET_HEADERS = {
   'Accept': 'application/json',
   'Authorization': TOKEN
@@ -33,17 +34,31 @@ export function fetchComments (id) {
   return fetch(url, { headers })
 }
 
+// POST
+const POST_HEADER = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'Authorization': TOKEN
+}
+
 export function newPost(post) {
   const url = `${BASE}/posts`
   const request = new Request(url, {
     method: 'POST',
-    headers: new Headers({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': TOKEN
-    }),
+    headers: new Headers(POST_HEADER),
     mode: 'cors',
     body: JSON.stringify(post)
+  })
+  return fetch(request)
+}
+
+export function newComment(comment) {
+  const url = `${BASE}/comments`
+  const request = new Request(url, {
+    method: 'POST',
+    headers: new Headers(POST_HEADER),
+    mode: 'cors',
+    body: JSON.stringify(comment)
   })
   return fetch(request)
 }

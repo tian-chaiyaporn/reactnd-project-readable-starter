@@ -1,6 +1,6 @@
 import * as API from './API'
 
-// COMMENTS
+// GET COMMENTS
 export const GET_COMMENTS = 'GET_COMMENTS';
 export function getComments (comments) {
   return {
@@ -15,13 +15,18 @@ export const fetchCommentsByPostId = (id) => dispatch => (
     .then(data => dispatch(getComments(data)))
 );
 
+// POST
 export const ADD_COMMENT = 'ADD_COMMENT';
-export function addComment ({body, author}) {
-  const timestamp = new Date.now()
+export function createComment (newComment) {
   return {
     type: ADD_COMMENT,
-    body,
-    author,
-    timestamp
+    newComment
   }
 }
+
+export const createNewComment = (comment) => dispatch => (
+  API.newComment(comment)
+    .then(data => data.json())
+    .then(data => {
+      dispatch(createComment(data))})
+);

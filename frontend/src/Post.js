@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import CommentList from './CommentList'
+import CommentForm from './CommentForm'
 import { fetchSinglePost, fetchCommentsByPostId } from './actions'
 
 class Post extends Component {
@@ -17,6 +18,7 @@ class Post extends Component {
           <p>{this.props.currentPost.body}</p>
           <p>{this.props.currentPost.author}</p>
         </div>
+        <CommentForm parentId={this.props.match.params.id}/>
         <CommentList comments={this.props.comments}/>
       </div>
     );

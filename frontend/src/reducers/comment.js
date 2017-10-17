@@ -16,8 +16,10 @@ function commentReducer(state = initialState, action) {
         comments: comments
       }
     case ADD_COMMENT :
+      const { newComment } = action
       return {
-        ...state
+        ...state,
+        comments: state.comments.concat(newComment)
       }
     default :
       return state
