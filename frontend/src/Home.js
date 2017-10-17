@@ -20,10 +20,10 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps ({categories, posts}) {
+function mapStateToProps ({categoryReducer, postReducer}) {
   return {
-    categories: categories,
-    posts: posts
+    categories: categoryReducer.categories,
+    posts: postReducer.posts
   }
 }
 

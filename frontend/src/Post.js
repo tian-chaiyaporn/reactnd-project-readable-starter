@@ -23,10 +23,10 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({currentPost, comments}) {
+function mapStateToProps ({postReducer, commentReducer}) {
   return {
-    currentPost: currentPost,
-    comments: comments
+    currentPost: postReducer.currentPost,
+    comments: commentReducer.comments
   }
 }
 
