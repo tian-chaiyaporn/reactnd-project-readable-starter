@@ -73,3 +73,14 @@ export function newComment(comment) {
   })
   return fetch(request)
 }
+
+export function updateCommentScore(id, score) {
+  const url = `${BASE}/comments/${id}`
+  const request = new Request(url, {
+    method: 'POST',
+    headers: new Headers(POST_HEADER),
+    mode: 'cors',
+    body: JSON.stringify({option: score})
+  })
+  return fetch(request)
+}

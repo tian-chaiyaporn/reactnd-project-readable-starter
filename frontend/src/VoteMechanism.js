@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { updateNewPostScore } from './actions'
+import { updateNewPostScore, updateNewCommentScore } from './actions'
 
 function VoteMechanism(props) {
 
@@ -9,8 +9,7 @@ function VoteMechanism(props) {
     if (props.type === 'post') {
       props.updateNewPostScore(props.id, score)
     } else {
-      console.log('comment')
-      console.log(score)
+      props.updateNewCommentScore(props.id, score)
     }
   }
 
@@ -23,7 +22,8 @@ function VoteMechanism(props) {
 }
 
 const mapDispatchToProps = {
-  updateNewPostScore
+  updateNewPostScore,
+  updateNewCommentScore
 }
 
 export default connect(null, mapDispatchToProps)(VoteMechanism);

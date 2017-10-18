@@ -30,3 +30,17 @@ export const createNewComment = (comment) => dispatch => (
     .then(data => {
       dispatch(createComment(data))})
 );
+
+export const UPDATE_COMMENT_SCORE = 'UPDATE_COMMENT_SCORE';
+export function updateCommentScore (commentWithNewScore) {
+  return {
+    type: UPDATE_COMMENT_SCORE,
+    commentWithNewScore
+  }
+}
+
+export const updateNewCommentScore = (id, score) => dispatch => (
+  API.updateCommentScore(id, score)
+    .then(data => data.json())
+    .then(data => dispatch(updateCommentScore(data)))
+);
