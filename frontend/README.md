@@ -9,7 +9,6 @@ ToDo:
 
 - Post detail is available at /:category/:post_id
 - Post is displayed with
-  number of comments,
   editing
   deleting
 
