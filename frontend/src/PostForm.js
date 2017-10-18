@@ -24,8 +24,17 @@ class PostForm extends Component {
 
   updateAuthor(author) {this.setState({author: author})}
 
+  clearForm() {
+    this.setState({
+      title: '',
+      body: '',
+      author: ''
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+    this.clearForm();
     if (this.state.title === '' || this.state.body === '' || this.state.author === '' ) {
       this.setState({warning: 'please input all fields'})
     }
