@@ -2,17 +2,18 @@ import * as API from './API'
 
 // GET COMMENTS
 export const GET_COMMENTS = 'GET_COMMENTS';
-export function getComments (comments) {
+export function getComments (comments, postId) {
   return {
     type: GET_COMMENTS,
-    comments
+    comments,
+    postId
   }
 }
 
 export const fetchCommentsByPostId = (id) => dispatch => (
   API.fetchComments(id)
     .then(data => data.json())
-    .then(data => dispatch(getComments(data)))
+    .then(data => dispatch(getComments(data, id)))
 );
 
 // POST

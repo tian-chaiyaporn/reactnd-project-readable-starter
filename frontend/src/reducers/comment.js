@@ -5,16 +5,26 @@ import {
 } from '../actions'
 
 const initialState = {
-  comments: []
+  comments: [],
+  commentsByPostId: []
 }
 
 function commentReducer(state = initialState, action) {
   switch (action.type) {
     case GET_COMMENTS:
-      const { comments } = action
+      const { comments, postId } = action
+      const newCommentState = state.commentsByPostId
+          .filter(c => c.postId === postId).length === 0 ?
+          state.commentsByPostId.concat({
+            postId: postId,
+            comments: comments
+          }) :
+          state.commentsByPostId
+            .map(c => c.comments = c.postId === postId ? comments : comments)
       return {
         ...state,
-        comments: comments
+        comments: comments,
+        commentsByPostId: newCommentState
       }
     case ADD_COMMENT :
       const { newComment } = action

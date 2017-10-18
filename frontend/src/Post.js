@@ -23,6 +23,7 @@ class Post extends Component {
             type="post"
             id={this.props.match.params.id}
           />
+          <p>comments: {this.props.comments.length}</p>
         </div>
         <CommentForm parentId={this.props.match.params.id}/>
         <CommentList comments={this.props.comments}/>
