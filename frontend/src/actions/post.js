@@ -72,3 +72,18 @@ export const updateNewPostScore = (id, score) => dispatch => (
     .then(data => data.json())
     .then(data => dispatch(updatePostScore(data)))
 );
+
+// DELETE POST
+export const DELETE_POST = 'DELETE_POST';
+export function deletePost (deletedId) {
+  return {
+    type: DELETE_POST,
+    deletedId
+  }
+}
+
+export const deletePostById = (id) => dispatch => (
+  API.deletePost(id)
+    .then(data => data.json())
+    .then(data => dispatch(deletePost(data.id)))
+);

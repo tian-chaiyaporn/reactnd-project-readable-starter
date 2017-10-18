@@ -3,6 +3,7 @@ import {
   GET_CATEGORY_POSTS_DATA,
   GET_SINGLE_POST,
   CREATE_NEW_POST,
+  DELETE_POST,
   UPDATE_POST_SCORE
 } from '../actions'
 
@@ -37,6 +38,14 @@ function postReducer(state = initialState, action) {
       return {
         ...state,
         currentCategoryPosts: state.currentCategoryPosts.concat(newPost)
+      }
+    case DELETE_POST:
+      const { deletedId } = action
+      return {
+        ...state,
+        posts: state.posts.filter(p => p.id !== deletedId),
+        currentCategoryPosts: state.currentCategoryPosts.filter(p => p.id !== deletedId),
+        currentPost: state.currentPost.id === deletedId ? {} : state.currentPost
       }
     case UPDATE_POST_SCORE:
       const { postWithNewScore } = action

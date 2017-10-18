@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import VoteMechanism from './VoteMechanism'
-import { fetchCommentsByPostId } from './actions'
+import { fetchCommentsByPostId, deletePostById } from './actions'
 
 class PostItem extends Component {
+  constructor() {
+    super();
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchCommentsByPostId(this.props.id));
+  }
+
+  handleDelete() {
+    this.props.dispatch(deletePostById(this.props.id))
   }
 
   render() {
@@ -27,6 +36,7 @@ class PostItem extends Component {
           id={this.props.id}
         />
         <p>comments: {commentsNumber}</p>
+        <button onClick={this.handleDelete}>Delete</button>
         <hr/>
       </div>
     )

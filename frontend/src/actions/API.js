@@ -34,6 +34,23 @@ export function fetchComments (id) {
   return fetch(url, { headers })
 }
 
+// DELETE
+const DELETE_HEADERS = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'Authorization': TOKEN
+}
+
+export function deletePost (id) {
+  const url = `${BASE}/posts/${id}`
+  const request = new Request(url, {
+    method: 'DELETE',
+    headers: new Headers(DELETE_HEADERS),
+    mode: 'cors'
+  })
+  return fetch(request)
+}
+
 // POST
 const POST_HEADER = {
   'Accept': 'application/json',
