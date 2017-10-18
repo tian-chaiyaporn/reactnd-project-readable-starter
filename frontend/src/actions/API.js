@@ -51,6 +51,16 @@ export function deletePost (id) {
   return fetch(request)
 }
 
+export function deleteComment (id) {
+  const url = `${BASE}/comments/${id}`
+  const request = new Request(url, {
+    method: 'DELETE',
+    headers: new Headers(DELETE_HEADERS),
+    mode: 'cors'
+  })
+  return fetch(request)
+}
+
 // POST
 const POST_HEADER = {
   'Accept': 'application/json',

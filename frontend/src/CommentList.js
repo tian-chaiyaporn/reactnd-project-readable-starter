@@ -12,6 +12,7 @@ export default function CommentList ({comments}) {
           author={comment.author}
           score={comment.voteScore}
           commentDate={date.toString()}
+          parentId={comment.parentId}
         />
       </li>
     )

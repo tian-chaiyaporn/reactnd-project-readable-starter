@@ -1,6 +1,7 @@
 import {
   GET_COMMENTS,
   ADD_COMMENT,
+  DELETE_COMMENT,
   UPDATE_COMMENT_SCORE
 } from '../actions'
 
@@ -31,6 +32,16 @@ function commentReducer(state = initialState, action) {
       return {
         ...state,
         comments: state.comments.concat(newComment)
+      }
+    case DELETE_COMMENT:
+      const { deletedId, parentId } = action
+      return {
+        ...state,
+        comments: state.comments.filter(p => p.id !== deletedId),
+        commentsByPostId: state.commentsByPostId.map(c => {
+          return c = c.parentId === parentId ?
+            c.filter(o => o.id !== deletedId) : c
+        })
       }
     case UPDATE_COMMENT_SCORE:
       const { commentWithNewScore } = action

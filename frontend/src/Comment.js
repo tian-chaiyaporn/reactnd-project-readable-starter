@@ -1,19 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import VoteMechanism from './VoteMechanism'
+import { deleteCommentById } from './actions'
 
+function Comment (props) {
+  function handleClick(e, commentId, parentId) {
+    e.preventDefault();
+    props.deleteCommentById(commentId, parentId)
+  }
 
-export default function Comment ({id, body, author, score, commentDate}) {
-  const date = commentDate.substring(0, commentDate.indexOf('GMT'))
+  const date = props.commentDate.substring(0, props.commentDate.indexOf('GMT'))
+
   return (
     <div className="comment-item">
-      <h3>{body}</h3>
-      <p>author: {author}</p>
-      <p>score: {score}</p>
+      <h3>{props.body}</h3>
+      <p>author: {props.author}</p>
+      <p>score: {props.score}</p>
       <p>date: {date}</p>
       <VoteMechanism
         type="comment"
-        id={id}
+        id={props.id}
       />
+      <button onClick={e => handleClick(e, props.id, props.parentId)}>
+        Delete
+      </button>
     </div>
   )
 }
+
+const mapDispatchToProps = {
+  deleteCommentById
+}
+
+export default connect(null, mapDispatchToProps)(Comment);

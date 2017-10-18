@@ -45,3 +45,19 @@ export const updateNewCommentScore = (id, score) => dispatch => (
     .then(data => data.json())
     .then(data => dispatch(updateCommentScore(data)))
 );
+
+// DELETE COMMENT
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export function deleteComment (deletedId, parentId) {
+  return {
+    type: DELETE_COMMENT,
+    deletedId,
+    parentId
+  }
+}
+
+export const deleteCommentById = (id, parentId) => dispatch => (
+  API.deleteComment(id)
+    .then(data => data.json())
+    .then(data => dispatch(deleteComment(data.id, parentId)))
+);
