@@ -67,10 +67,6 @@ export function updatePostScore (postWithNewScore) {
   }
 }
 
-export const test = () => dispatch => (
-  console.log('dispatching')
-);
-
 export const updateNewPostScore = (id, score) => dispatch => (
   API.updatePostScore(id, score)
     .then(data => data.json())
