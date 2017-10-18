@@ -2,7 +2,6 @@ Plan:
 
 ToDo:
 - Listed posts are displayed with
-  number of comments,
   editing
   deleting
 

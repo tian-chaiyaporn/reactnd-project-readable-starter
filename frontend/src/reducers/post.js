@@ -41,16 +41,10 @@ function postReducer(state = initialState, action) {
     case UPDATE_POST_SCORE:
       const { postWithNewScore } = action
       const updatedPosts = state.posts.map(p => {
-        if (p.id === postWithNewScore.id) {
-          p = postWithNewScore
-        }
-        return p
+        return p =  p.id === postWithNewScore.id ? postWithNewScore : p
       })
       const updatedCategoryPosts = state.currentCategoryPosts.map(p => {
-        if (p.id === postWithNewScore.id) {
-          p = postWithNewScore
-        }
-        return p
+        return p =  p.id === postWithNewScore.id ? postWithNewScore : p
       })
       return {
         ...state,
