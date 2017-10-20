@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { createNewComment } from './actions'
+import { createNewComment, editCommentById } from './actions'
 import shortid from 'shortid'
 
 class CommentForm extends Component {
@@ -15,6 +15,16 @@ class CommentForm extends Component {
       warning: ''
     }
   }
+
+  componentDidMount() {
+    if (this.props.match) {
+      this.setState({
+        author: this.props.match.params.author,
+        body: this.props.match.params.body
+      })
+    }
+  }
+
   updateBody(body) {this.setState({body: body})}
 
   updateAuthor(author) {this.setState({author: author})}
@@ -32,13 +42,22 @@ class CommentForm extends Component {
     if (this.state.body === '' || this.state.author === '' ) {
       this.setState({warning: 'please input all fields'})
     }
-    this.props.dispatch(createNewComment({
-      id: shortid.generate(),
-      timestamp: Date.now(),
-      body: this.state.body,
-      author: this.state.author,
-      parentId: this.props.parentId
-    }))
+    if (!this.props.match) {
+      this.props.dispatch(createNewComment({
+        id: shortid.generate(),
+        timestamp: Date.now(),
+        body: this.state.body,
+        author: this.state.author,
+        parentId: this.props.parentId
+      }))
+    } else {
+      this.props.history.goBack()
+      this.props.dispatch(editCommentById(
+        this.props.match.params.id,
+        Date.now(),
+        this.state.body
+      ))
+    }
   }
 
   render() {

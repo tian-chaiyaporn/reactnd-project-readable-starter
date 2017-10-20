@@ -61,6 +61,27 @@ export function deleteComment (id) {
   return fetch(request)
 }
 
+// EDIT
+const PUT_HEADER = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'Authorization': TOKEN
+}
+
+export function editComment (editId, timeStamp, body) {
+  const url = `${BASE}/comments/${editId}`
+  const request = new Request(url, {
+    method: 'PUT',
+    headers: new Headers(PUT_HEADER),
+    mode: 'cors',
+    body: JSON.stringify({
+      timestamp: timeStamp,
+      body: body
+    })
+  })
+  return fetch(request)
+}
+
 // POST
 const POST_HEADER = {
   'Accept': 'application/json',

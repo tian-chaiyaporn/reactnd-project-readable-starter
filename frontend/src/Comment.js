@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import VoteMechanism from './VoteMechanism'
 import { deleteCommentById } from './actions'
+import { Link } from 'react-router-dom'
 
 function Comment (props) {
   function handleClick(e, commentId, parentId) {
@@ -24,6 +25,9 @@ function Comment (props) {
       <button onClick={e => handleClick(e, props.id, props.parentId)}>
         Delete
       </button>
+      <Link to={`/comments/${props.id}/${props.author}/${props.body}`}>
+        <button>Edit</button>
+      </Link>
     </div>
   )
 }
