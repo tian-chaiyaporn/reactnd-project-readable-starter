@@ -73,6 +73,21 @@ export const updateNewPostScore = (id, score) => dispatch => (
     .then(data => dispatch(updatePostScore(data)))
 );
 
+// EDIT POST
+export const EDIT_POST = 'EDIT_POST';
+export function editPost (editedPost) {
+  return {
+    type: EDIT_POST,
+    editedPost
+  }
+}
+
+export const editPostById = (editId, title, body) => dispatch => (
+  API.editPost(editId, title, body)
+    .then(data => data.json())
+    .then(data => dispatch(editPost(data)))
+);
+
 // DELETE POST
 export const DELETE_POST = 'DELETE_POST';
 export function deletePost (deletedId) {

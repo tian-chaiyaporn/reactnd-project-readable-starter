@@ -11,6 +11,7 @@ export default function PostList ({posts}) {
           postTitle={post.title}
           postAuthor={post.author}
           postDate={date.toString()}
+          postBody={post.body}
           currentScore={post.voteScore}
         />
       </li>

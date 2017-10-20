@@ -17,12 +17,12 @@ class CommentForm extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match) {
+    this.props.match && (
       this.setState({
         author: this.props.match.params.author,
         body: this.props.match.params.body
       })
-    }
+    )
   }
 
   updateBody(body) {this.setState({body: body})}
@@ -71,12 +71,14 @@ class CommentForm extends Component {
             onChange={(e) => this.updateBody(e.target.value)}
             placeholder={this.state.placeholderBody}
           />
-          <input
-            type="text"
-            value={this.state.author}
-            onChange={(e) => this.updateAuthor(e.target.value)}
-            placeholder={this.state.placeholderAuthor}
-          />
+          {!this.props.match && (
+            <input
+              type="text"
+              value={this.state.author}
+              onChange={(e) => this.updateAuthor(e.target.value)}
+              placeholder={this.state.placeholderAuthor}
+            />
+          )}
           <input type="submit" value="Submit" />
         </form>
         <h2>{this.state.warning}</h2>

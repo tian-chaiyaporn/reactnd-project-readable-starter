@@ -68,10 +68,7 @@ function commentReducer(state = initialState, action) {
     case UPDATE_COMMENT_SCORE:
       const { commentWithNewScore } = action
       const updatedComments = state.comments.map(p => {
-        if (p.id === commentWithNewScore.id) {
-          p = commentWithNewScore
-        }
-        return p
+        return p = p.id === commentWithNewScore.id ? commentWithNewScore : p
       })
       return {
         ...state,

@@ -68,6 +68,20 @@ const PUT_HEADER = {
   'Authorization': TOKEN
 }
 
+export function editPost (editId, title, body) {
+  const url = `${BASE}/posts/${editId}`
+  const request = new Request(url, {
+    method: 'PUT',
+    headers: new Headers(PUT_HEADER),
+    mode: 'cors',
+    body: JSON.stringify({
+      title: title,
+      body: body
+    })
+  })
+  return fetch(request)
+}
+
 export function editComment (editId, timeStamp, body) {
   const url = `${BASE}/comments/${editId}`
   const request = new Request(url, {

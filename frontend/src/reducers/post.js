@@ -3,6 +3,7 @@ import {
   GET_CATEGORY_POSTS_DATA,
   GET_SINGLE_POST,
   CREATE_NEW_POST,
+  EDIT_POST,
   DELETE_POST,
   UPDATE_POST_SCORE
 } from '../actions'
@@ -38,6 +39,18 @@ function postReducer(state = initialState, action) {
       return {
         ...state,
         currentCategoryPosts: state.currentCategoryPosts.concat(newPost)
+      }
+    case EDIT_POST:
+      const { editedPost } = action
+      return {
+        ...state,
+        posts: state.posts
+          .filter(c => c.id !== editedPost.id)
+          .concat(editedPost),
+        currentCategoryPosts: state.currentCategoryPosts
+          .filter(c => c.id !== editedPost.id)
+          .concat(editedPost),
+        currentPost: editedPost
       }
     case DELETE_POST:
       const { deletedId } = action

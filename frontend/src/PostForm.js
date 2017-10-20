@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { createNewPost } from './actions'
+import { createNewPost, editPostById } from './actions'
 import shortid from 'shortid'
 
 class PostForm extends Component {
@@ -16,6 +16,15 @@ class PostForm extends Component {
       placeholderAuthor: 'your name',
       warning: ''
     }
+  }
+
+  componentDidMount() {
+    this.props.match && (
+      this.setState({
+        title: this.props.match.params.title,
+        body: this.props.match.params.body
+      })
+    )
   }
 
   updateTitle(title) {this.setState({title: title})}
@@ -38,14 +47,23 @@ class PostForm extends Component {
     if (this.state.title === '' || this.state.body === '' || this.state.author === '' ) {
       this.setState({warning: 'please input all fields'})
     }
-    this.props.dispatch(createNewPost({
-      id: shortid.generate(),
-      timestamp: Date.now(),
-      title: this.state.title,
-      body: this.state.body,
-      author: this.state.author,
-      category: this.props.category
-    }))
+    if (!this.props.match) {
+      this.props.dispatch(createNewPost({
+        id: shortid.generate(),
+        timestamp: Date.now(),
+        title: this.state.title,
+        body: this.state.body,
+        author: this.state.author,
+        category: this.props.category
+      }))
+    } else {
+      this.props.history.goBack()
+      this.props.dispatch(editPostById(
+        this.props.match.params.id,
+        this.state.title,
+        this.state.body
+      ))
+    }
   }
 
   render() {
@@ -65,12 +83,14 @@ class PostForm extends Component {
             onChange={(e) => this.updateBody(e.target.value)}
             placeholder={this.state.placeholderBody}
           />
-          <input
-            type="text"
-            value={this.state.author}
-            onChange={(e) => this.updateAuthor(e.target.value)}
-            placeholder={this.state.placeholderAuthor}
-          />
+          {!this.props.match && (
+            <input
+              type="text"
+              value={this.state.author}
+              onChange={(e) => this.updateAuthor(e.target.value)}
+              placeholder={this.state.placeholderAuthor}
+            />
+          )}
           <input type="submit" value="Submit" />
         </form>
         <h2>{this.state.warning}</h2>

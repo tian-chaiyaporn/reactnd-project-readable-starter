@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import VoteMechanism from './VoteMechanism'
@@ -9,9 +10,7 @@ import { fetchSinglePost, fetchCommentsByPostId, deletePostById } from './action
 class Post extends Component {
   constructor() {
     super()
-    this.state = {
-      redirect: false
-    }
+    this.state = {redirect: false}
   }
 
   componentDidMount() {
@@ -21,9 +20,7 @@ class Post extends Component {
   }
 
   componentDidUpdate() {
-    if (Object.keys(this.props.currentPost).length === 0) {
-      this.setState({redirect: true})
-    }
+    Object.keys(this.props.currentPost).length === 0 && (this.setState({redirect: true}))
   }
 
   handleDelete() {
@@ -48,6 +45,9 @@ class Post extends Component {
           />
           <p>comments: {this.props.comments.length}</p>
           <button onClick={this.handleDelete}>Delete</button>
+          <Link to={`/post-edit/${this.props.match.params.id}/${this.props.currentPost.title}/${this.props.currentPost.body}`}>
+            <button>Edit</button>
+          </Link>
         </div>
         <CommentForm parentId={this.props.match.params.id}/>
         <CommentList comments={this.props.comments}/>

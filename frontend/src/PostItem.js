@@ -25,7 +25,7 @@ class PostItem extends Component {
     const date = this.props.postDate.substring(0, this.props.postDate.indexOf('GMT'))
     return (
       <div className="post-item">
-        <Link to={`/post/${this.props.id}/${this.props.postTitle.replace(/ /g, "-")}`}>
+        <Link to={`/post/${this.props.id}`}>
           <h3>{this.props.postTitle}</h3>
         </Link>
         <p>by: {this.props.postAuthor}</p>
@@ -37,6 +37,9 @@ class PostItem extends Component {
         />
         <p>comments: {commentsNumber}</p>
         <button onClick={this.handleDelete}>Delete</button>
+        <Link to={`/post-edit/${this.props.id}/${this.props.postTitle}/${this.props.postBody}`}>
+          <button>Edit</button>
+        </Link>
         <hr/>
       </div>
     )
