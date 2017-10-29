@@ -5,8 +5,21 @@ import PostForm from './PostForm'
 import { fetchPosts } from './actions'
 
 class Category extends Component {
+  constructor() {
+    super()
+    this.state = {title: ''}
+  }
+
   componentDidMount() {
+    this.setState({title: this.props.match.params.name})
     this.props.fetchPosts(this.props.match.params.name)
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    if (this.state.title !== nextProps.match.params.name) {
+      this.setState({title: nextProps.match.params.name})
+      this.props.fetchPosts(nextProps.match.params.name)
+    }
   }
 
   render() {
