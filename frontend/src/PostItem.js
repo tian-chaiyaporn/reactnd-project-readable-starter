@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import VoteMechanism from './VoteMechanism'
 import { fetchCommentsByPostId, deletePostById } from './actions'
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 class PostItem extends Component {
   constructor() {
@@ -32,21 +34,32 @@ class PostItem extends Component {
     const date = postDate.substring(0, postDate.indexOf('GMT'))
 
     return (
-      <div className="post-item">
-        <Link to={`/post/${id}`}>
-          <h3>{postTitle}</h3>
-        </Link>
-        <p>by: {postAuthor}</p>
-        <p>date: {date}</p>
-        <p>score: {currentScore}</p>
-        <VoteMechanism type="post" id={id}/>
-        <p>comments: {commentsNumber}</p>
-        <button onClick={this.handleDelete}>Delete</button>
-        <Link to={`/post-edit/${id}/${postTitle}/${postBody}`}>
-          <button>Edit</button>
-        </Link>
-        <hr/>
-      </div>
+      <Card className="post-item" style={{maxWidth: '800px', margin: '0 auto', marginBottom: '20px'}}>
+        <CardHeader
+         title={postTitle}
+         subtitle={`by: ${postAuthor}`}
+        />
+
+        <CardText>
+          date: {date} <br/>
+          score: {currentScore} <br/>
+          comments: {commentsNumber}
+        </CardText>
+
+        <CardActions>
+          <VoteMechanism type="post" id={id}/>
+        </CardActions>
+
+        <CardActions>
+          <Link to={`/post/${id}`}>
+            <FlatButton label="go to post" />
+          </Link>
+          <Link to={`/post-edit/${id}/${postTitle}/${postBody}`}>
+            <FlatButton label="Edit" />
+          </Link>
+          <FlatButton onClick={this.handleDelete} label="Delete" />
+        </CardActions>
+      </Card>
     )
   }
 }

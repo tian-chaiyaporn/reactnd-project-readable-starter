@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as actions from './actions/comment'
 import shortid from 'shortid'
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 
 class CommentForm extends Component {
   constructor(props) {
@@ -62,24 +64,28 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <div className="new-comment">
-        <form className="comment-form" onSubmit={this.handleSubmit}>
-          <textarea
-            rows="4"
-            cols="30"
+      <div className="new-comment" style={{display: 'block', margin: '50px'}}>
+        <form
+          className="comment-form"
+          onSubmit={this.handleSubmit}
+          style={{textAlign: 'center', display: 'block', margin: 'auto', maxWidth: '800px'}}
+        >
+          <TextField
+            multiLine="true"
             value={this.state.body}
             onChange={(e) => this.updateBody(e.target.value)}
             placeholder={this.state.placeholderBody}
+            style={{display: 'block', width: '100%', margin: 'auto'}}
           />
           {!this.props.match && (
-            <input
-              type="text"
+            <TextField
               value={this.state.author}
               onChange={(e) => this.updateAuthor(e.target.value)}
               placeholder={this.state.placeholderAuthor}
+              style={{display: 'block', width: '100%', margin: 'auto'}}
             />
           )}
-          <input type="submit" value="Submit" />
+          <FlatButton onClick={this.handleSubmit} label="Submit"/>
         </form>
         <h2>{this.state.warning}</h2>
       </div>

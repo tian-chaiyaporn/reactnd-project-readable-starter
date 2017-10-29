@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import VoteMechanism from './VoteMechanism'
 import { deleteCommentById } from './actions'
 import { Link } from 'react-router-dom'
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 function Comment (props) {
   function handleClick(e, commentId, parentId) {
@@ -13,22 +15,28 @@ function Comment (props) {
   const date = props.commentDate.substring(0, props.commentDate.indexOf('GMT'))
 
   return (
-    <div className="comment-item">
-      <h3>{props.body}</h3>
-      <p>author: {props.author}</p>
-      <p>score: {props.score}</p>
-      <p>date: {date}</p>
-      <VoteMechanism
-        type="comment"
-        id={props.id}
+    <Card className="comment-item" style={{maxWidth: '800px', margin: '0 auto'}}>
+      <CardHeader
+       title={props.body}
+       subtitle={`by: ${props.author}`}
       />
-      <button onClick={e => handleClick(e, props.id, props.parentId)}>
-        Delete
-      </button>
-      <Link to={`/comments/${props.id}/${props.author}/${props.body}`}>
-        <button>Edit</button>
-      </Link>
-    </div>
+
+      <CardText>
+        date: {date} <br/>
+        score: {props.score}
+      </CardText>
+
+      <CardActions>
+        <VoteMechanism type="comment" id={props.id}/>
+      </CardActions>
+
+      <CardActions>
+        <Link to={`/comments/${props.id}/${props.author}/${props.body}`}>
+          <FlatButton label="Edit" />
+        </Link>
+        <FlatButton onClick={e => handleClick(e, props.id, props.parentId)} label="Delete" />
+      </CardActions>
+    </Card>
   )
 }
 

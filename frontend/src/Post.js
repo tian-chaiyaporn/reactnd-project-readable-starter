@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import VoteMechanism from './VoteMechanism'
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import { fetchSinglePost, fetchCommentsByPostId, deletePostById } from './actions'
+import FlatButton from 'material-ui/FlatButton';
 
 class Post extends Component {
   constructor() {
@@ -37,19 +39,33 @@ class Post extends Component {
     let { comments } = this.props.commentReducer
 
     return (
-      <div className="post">
-        <div className="post-details">
-          <h3>{title}</h3>
-          <p>{body}</p>
-          <p>author: {author}</p>
-          <p>score: {voteScore}</p>
-          <VoteMechanism type="post" id={id}/>
-          <p>comments: {comments.length}</p>
-          <button onClick={this.handleDelete}>Delete</button>
-          <Link to={`/post-edit/${id}/${title}/${body}`}>
-            <button>Edit</button>
-          </Link>
-        </div>
+      <div className="post" style={{marginTop: '30px'}}>
+        <Card className="post-item" style={{maxWidth: '800px', margin: '0 auto'}}>
+          <CardHeader
+           title={title}
+           subtitle={`by: ${author}`}
+          />
+
+          <CardText>
+            {body}
+          </CardText>
+
+          <CardText>
+            score: {voteScore} <br/>
+            comments: {comments.length}
+          </CardText>
+
+          <CardActions>
+            <VoteMechanism type="post" id={id}/>
+          </CardActions>
+
+          <CardActions>
+            <Link to={`/post-edit/${id}/${title}/${body}`}>
+              <FlatButton label="Edit" />
+            </Link>
+            <FlatButton onClick={this.handleDelete} label="Delete" />
+          </CardActions>
+        </Card>
         <CommentForm parentId={id}/>
         <CommentList comments={comments}/>
       </div>

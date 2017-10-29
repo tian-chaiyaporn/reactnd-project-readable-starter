@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { CardActions } from 'material-ui/Card';
 import { updateNewPostScore, updateNewCommentScore } from './actions'
+import RaisedButton from 'material-ui/RaisedButton';
 
 function VoteMechanism(props) {
 
@@ -14,10 +16,22 @@ function VoteMechanism(props) {
   }
 
   return (
-    <div className="vote-mechanism">
-      <button onClick={e => handleClick(e, 'upVote')}>Up</button>
-      <button onClick={e => handleClick(e, 'downVote')}>Down</button>
-    </div>
+    <CardActions className="vote-mechanism">
+      <RaisedButton
+        label="+"
+        onClick={e => handleClick(e, 'upVote')}
+        primary={true}
+        buttonStyle={{width: '40px'}}
+        style={{width: '40px', minWidth: '0px'}}
+      />
+      <RaisedButton
+        label="-"
+        onClick={e => handleClick(e, 'downVote')}
+        secondary={true}
+        buttonStyle={{width: '40px'}}
+        style={{width: '40px', minWidth: '0px'}}
+      />
+    </CardActions>
   );
 }
 

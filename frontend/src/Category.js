@@ -25,7 +25,7 @@ class Category extends Component {
   render() {
     return (
       <div className="Category">
-        <h1>{this.props.match.params.name}</h1>
+        <h1 style={{textAlign: 'center'}}>{this.props.match.params.name}</h1>
         <PostForm category={this.props.match.params.name} />
         <PostList posts={this.props.categoryPosts} />
       </div>

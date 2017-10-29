@@ -5,7 +5,7 @@ export default function CommentList ({comments}) {
   const commentItems = comments.map(comment => {
     const date = new Date(comment.timestamp)
     return (
-      <li key={comment.id}>
+      <li key={comment.id} style={{marginTop: '20px', marginBottom: '20px'}}>
         <Comment
           id={comment.id}
           body={comment.body}
@@ -19,7 +19,7 @@ export default function CommentList ({comments}) {
   })
 
   return (
-    <ul className="comment-list">
+    <ul className="comment-list" style={{listStyle: 'none', margin: '0px', padding: '0px'}}>
       {commentItems}
     </ul>
   )
