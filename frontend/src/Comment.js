@@ -32,8 +32,4 @@ function Comment (props) {
   )
 }
 
-const mapDispatchToProps = {
-  deleteCommentById
-}
-
-export default connect(null, mapDispatchToProps)(Comment);
+export default connect(null, { deleteCommentById })(Comment);

@@ -19,3 +19,9 @@ To get started:
 ## API Server
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+
+
+## Licensing and Contribution
+
+API server side was provided by the Udacity Team, the frontend was started with create-react-app and built on by me.
+There is no license apart from that which is specified by Udacity and create-react-app

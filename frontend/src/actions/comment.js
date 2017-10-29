@@ -1,7 +1,13 @@
 import * as API from './API'
+import {
+  GET_COMMENTS,
+  ADD_COMMENT,
+  UPDATE_COMMENT_SCORE,
+  EDIT_COMMENT,
+  DELETE_COMMENT
+} from './types'
 
 // GET COMMENTS
-export const GET_COMMENTS = 'GET_COMMENTS';
 export function getComments (comments, postId) {
   return {
     type: GET_COMMENTS,
@@ -17,7 +23,6 @@ export const fetchCommentsByPostId = (id) => dispatch => (
 );
 
 // POST
-export const ADD_COMMENT = 'ADD_COMMENT';
 export function createComment (newComment) {
   return {
     type: ADD_COMMENT,
@@ -32,7 +37,6 @@ export const createNewComment = (comment) => dispatch => (
       dispatch(createComment(data))})
 );
 
-export const UPDATE_COMMENT_SCORE = 'UPDATE_COMMENT_SCORE';
 export function updateCommentScore (commentWithNewScore) {
   return {
     type: UPDATE_COMMENT_SCORE,
@@ -47,7 +51,6 @@ export const updateNewCommentScore = (id, score) => dispatch => (
 );
 
 // EDIT COMMENT
-export const EDIT_COMMENT = 'EDIT_COMMENT';
 export function editComment (editedComment) {
   return {
     type: EDIT_COMMENT,
@@ -62,7 +65,6 @@ export const editCommentById = (editId, timeStamp, body) => dispatch => (
 );
 
 // DELETE COMMENT
-export const DELETE_COMMENT = 'DELETE_COMMENT';
 export function deleteComment (deletedId, parentId) {
   return {
     type: DELETE_COMMENT,

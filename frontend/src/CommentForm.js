@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { createNewComment, editCommentById } from './actions'
+import * as actions from './actions/comment'
 import shortid from 'shortid'
 
 class CommentForm extends Component {
@@ -43,20 +43,20 @@ class CommentForm extends Component {
       this.setState({warning: 'please input all fields'})
     }
     if (!this.props.match) {
-      this.props.dispatch(createNewComment({
+      this.props.createNewComment({
         id: shortid.generate(),
         timestamp: Date.now(),
         body: this.state.body,
         author: this.state.author,
         parentId: this.props.parentId
-      }))
+      })
     } else {
       this.props.history.goBack()
-      this.props.dispatch(editCommentById(
+      this.props.editCommentById(
         this.props.match.params.id,
         Date.now(),
         this.state.body
-      ))
+      )
     }
   }
 
@@ -87,4 +87,4 @@ class CommentForm extends Component {
   }
 }
 
-export default connect()(CommentForm);
+export default connect(null, actions)(CommentForm);

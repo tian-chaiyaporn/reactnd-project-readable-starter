@@ -21,9 +21,4 @@ function VoteMechanism(props) {
   );
 }
 
-const mapDispatchToProps = {
-  updateNewPostScore,
-  updateNewCommentScore
-}
-
-export default connect(null, mapDispatchToProps)(VoteMechanism);
+export default connect(null, {updateNewPostScore, updateNewCommentScore})(VoteMechanism);

@@ -6,8 +6,8 @@ import { fetchCatgories, fetchPosts } from './actions'
 
 class Home extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchCatgories())
-    this.props.dispatch(fetchPosts())
+    this.props.fetchCatgories()
+    this.props.fetchPosts()
   }
 
   render() {
@@ -27,4 +27,4 @@ function mapStateToProps ({categoryReducer, postReducer}) {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { fetchCatgories, fetchPosts })(Home);

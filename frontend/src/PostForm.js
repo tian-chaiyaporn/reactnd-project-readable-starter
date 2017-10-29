@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { createNewPost, editPostById } from './actions'
+import * as actions from './actions/post'
 import shortid from 'shortid'
 
 class PostForm extends Component {
@@ -33,13 +33,7 @@ class PostForm extends Component {
 
   updateAuthor(author) {this.setState({author: author})}
 
-  clearForm() {
-    this.setState({
-      title: '',
-      body: '',
-      author: ''
-    })
-  }
+  clearForm() {this.setState({ title: '', body: '', author: '' })}
 
   handleSubmit(event) {
     event.preventDefault();
@@ -48,21 +42,21 @@ class PostForm extends Component {
       this.setState({warning: 'please input all fields'})
     }
     if (!this.props.match) {
-      this.props.dispatch(createNewPost({
+      this.props.createNewPost({
         id: shortid.generate(),
         timestamp: Date.now(),
         title: this.state.title,
         body: this.state.body,
         author: this.state.author,
         category: this.props.category
-      }))
+      })
     } else {
       this.props.history.goBack()
-      this.props.dispatch(editPostById(
+      this.props.editPostById(
         this.props.match.params.id,
         this.state.title,
         this.state.body
-      ))
+      )
     }
   }
 
@@ -99,4 +93,4 @@ class PostForm extends Component {
   }
 }
 
-export default connect()(PostForm);
+export default connect(null, actions)(PostForm);

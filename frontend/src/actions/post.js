@@ -1,7 +1,15 @@
 import * as API from './API'
+import {
+  GET_SINGLE_POST,
+  GET_POSTS_DATA,
+  GET_CATEGORY_POSTS_DATA,
+  CREATE_NEW_POST,
+  UPDATE_POST_SCORE,
+  EDIT_POST,
+  DELETE_POST
+} from './types'
 
 // GET
-export const GET_SINGLE_POST = 'GET_SINGLE_POST';
 export function getSinglePost (post) {
   return {
     type: GET_SINGLE_POST,
@@ -15,7 +23,6 @@ export const fetchSinglePost = (id) => dispatch => (
     .then(data => dispatch(getSinglePost(data)))
 );
 
-export const GET_POSTS_DATA = 'GET_POSTS_DATA';
 export function getPostsData (initialPosts) {
   return {
     type: GET_POSTS_DATA,
@@ -23,7 +30,6 @@ export function getPostsData (initialPosts) {
   }
 }
 
-export const GET_CATEGORY_POSTS_DATA = 'GET_CATEGORY_POSTS_DATA';
 export function getCategoryPostsData (categoryPosts) {
   return {
     type: GET_CATEGORY_POSTS_DATA,
@@ -44,7 +50,6 @@ export const fetchPosts = (category = '') => dispatch => (
 );
 
 // POST
-export const CREATE_NEW_POST = 'CREATE_NEW_POST';
 export function createPost (newPost) {
   return {
     type: CREATE_NEW_POST,
@@ -59,7 +64,6 @@ export const createNewPost = (post) => dispatch => (
 );
 
 // POST /posts/:id
-export const UPDATE_POST_SCORE = 'UPDATE_POST_SCORE';
 export function updatePostScore (postWithNewScore) {
   return {
     type: UPDATE_POST_SCORE,
@@ -74,7 +78,6 @@ export const updateNewPostScore = (id, score) => dispatch => (
 );
 
 // EDIT POST
-export const EDIT_POST = 'EDIT_POST';
 export function editPost (editedPost) {
   return {
     type: EDIT_POST,
@@ -89,7 +92,6 @@ export const editPostById = (editId, title, body) => dispatch => (
 );
 
 // DELETE POST
-export const DELETE_POST = 'DELETE_POST';
 export function deletePost (deletedId) {
   return {
     type: DELETE_POST,

@@ -6,7 +6,7 @@ import { fetchPosts } from './actions'
 
 class Category extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchPosts(this.props.match.params.name))
+    this.props.fetchPosts(this.props.match.params.name)
   }
 
   render() {
@@ -26,4 +26,4 @@ function mapStateToProps ({postReducer}) {
   }
 }
 
-export default connect(mapStateToProps)(Category);
+export default connect(mapStateToProps, { fetchPosts })(Category);

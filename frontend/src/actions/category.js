@@ -1,7 +1,7 @@
 import * as API from './API'
+import { GET_CATEGORY_DATA } from './types'
 
 // CATEGORY
-export const GET_CATEGORY_DATA = 'GET_CATEGORY_DATA';
 export function getCategoryData (initialCategory) {
   return {
     type: GET_CATEGORY_DATA,
